@@ -36,7 +36,10 @@
 <style>
 
 
-
+ #datetime {
+            font-size: 16px;
+            color: #333;
+        }
 
 /* Styles for logo images */
 .logo img {
@@ -128,37 +131,72 @@
     padding: 10px;
 }
 
-/* Style for the calendar icon */
-.header_top i.fa-calendar {
-    color: #333;
-}
 
-/* Style for the date */
-#date {
-    font-weight: bold;
+
+
+/* Style for the language options */
+.nav.nav-tabs li {
+    list-style: none;
+    display: inline;
     margin-left: 10px;
-    color: #333;
 }
 
+.nav.nav-tabs li a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
 
+.nav.nav-tabs li a:hover {
+    background-color: #333;
+    color: #fff;
+}
 
+/* Add CSS for border design with flowers */
+.carousel-item img {
+  border: 5px solid #f3f3f3; /* Border color */
+  border-radius: 10px; /* Border radius */
+}
 
 
 </style>
 
 
 </head>
-
+  <!-- advertisement -->
+<div id="advertisementModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <img id="modalImage" src="" alt="Advertisement Image" style="max-width: 100%;">
+              <div id="modalContent"></div>
+          </div>
+      </div>
+  </div>
+</div>
 <body>
+
+
     <div class="header_top">
-        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
-            <div>
-                <i class="fa fa-calendar fa-1x pad-right hidden-xs"></i>
-                <span id="date">Sun Mar 24 2024 , 13:2</span>
-            </div>
+      <div class="col-xs-12 col-lg-3 col-md-3 col-sm-12">
+        <div class="containertime">
+          <div id="datetime"></div>
+        
+           
         </div>
+    </div>
+     
         <div class="col-xs-12 col-lg-3 col-md-3 col-sm-12">
             <div class="containerlang">
+          
                 <div class="row">
                     <ul class="nav nav-tabs">
                     <div id="google_translate_element"></div>
@@ -173,6 +211,7 @@
                       </script>
                    </ul>
                 </div>
+               
             </div>
         </div>
         <div class="logo_row ">
@@ -200,6 +239,8 @@
                             <a href="#" class="white desc" onclick="return desc();">A<sup>-</sup></a> 
                             <a href="#" class="white norm" onclick="window.location.reload()">A</a> 
                             <a href="#" class="white inc" onclick="return inc();">A<sup>+</sup></a>
+                            <button onclick="location.href='registration_form.php';">Login</button>
+
                         </span>
                     </div>
                 </div>
@@ -230,74 +271,118 @@
     <!-- header section strats -->
     <header class="header_section">
       <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
-           
-            <div class="header_text col-md-9  col-sm-9 col-xs-9 pad-top double ">
-                <h4 style="font-size: 20px;">राजेश आर्यन सुभम प्राइवेट इंस्टीट्यूट</h4>
-                    <h4 style="font-size: 20px;">RAJESH ARYAN SUBHAM PRIVATE INSTITUTE	</h4>
-                    
-                    <h5 style="font-size: 13px;
-    color: #003b00;">( An Autonomous Body Under Ministry of Education ) Government Of Pluto</h5>
-                    
-                </div>
-          </a>
-
-          
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="about.html"> About </a>
-                </li>
-
-                <li class="nav-item ">
-                  <a class="nav-link" href="admission.html"> Admission </a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="why.html"> Why Us </a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact Us</a>
-                </li>
-
-              </ul>
-            </div>
-        </nav>
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+              <a class="navbar-brand"  onclick="showImagePopup()">
+                  <img src="images/logo1.png" alt="Logo" style="max-height: 100px; max-width: 100px;"  >
+                  <div class="header_text col-md-9 col-sm-9 col-xs-9 pad-top double">
+                      <h5 style="font-size: 20px;">राजेश आर्यन सुभम प्राइवेट इंस्टीट्यूट</h5>
+                      <h3 style="font-size: 20px;">RAJESH ARYAN SUBHAM PRIVATE INSTITUTE</h3>
+                      <h5 style="font-size: 13px; color: #003b00;">(An Autonomous Body Under Ministry of Education) Government Of Pluto</h5>
+                  </div>
+              </a>
+  
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+  
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                      <ul class="navbar-nav">
+                          <li class="nav-item active">
+                              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="about.html">About</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="admission.html">Admission</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="why.html">Why Us</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="contact.html">Contact Us</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
       </div>
-    </header>
-    <section class="hero_section ">
-      <div class="hero-container container">
-        <div class="hero_detail-box">
-          <h1>
+  <!-- Modal HTML -->
+<div id="imageModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" style="position: relative; z-index: 9999;">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <img src="images/logo1.png" alt="Logo" style="width: 100%;">
+          </div>
+      </div>
+  </div>
+</div>
+
+  
+      <script>
+          function showImagePopup() {
+              $('#imageModal').modal('show');
+          }
+      </script>
+  </header>
+  
+  <section class="hero_section">
+    <div class="hero-container container">
+      <div class="hero_detail-box">
+        <h1>
           VISION
-          </h1>
-          <p>
-            To provide good quality modern education-including a strong component of culture, inculcation of values, awareness of the environment, adventure activities and physical education- to the talented children predominantly from the rural areas without regard to their family's socio-economic conditions.
-          </p>
-          <div class="hero_btn-continer">
-            <a href="" class="call_to-btn btn_white-border">
-              Read More
-            </a>
-          </div>
-        </div>
-        <div class="hero_img-container">
-          <div>
-            <img src="images/hero.png" alt="" class="img-fluid">
-          </div>
+        </h1>
+        <p>
+          To provide good quality modern education-including a strong component of culture, inculcation of values, awareness of the environment, adventure activities and physical education- to the talented children predominantly from the rural areas without regard to their family's socio-economic conditions.
+        </p>
+        <div class="hero_btn-continer">
+          <a href="" class="call_to-btn btn_white-border">
+            Read More
+          </a>
         </div>
       </div>
-    </section>
+      <div class="hero_carousel-container">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <!-- Add more indicators if you have more slides -->
+          </ol>
+  
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://w0.peakpx.com/wallpaper/906/105/HD-wallpaper-anime-school-girl-anime-landscape-cityscape-school-uniform-back-view-anime.jpg" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+              <img src="https://c4.wallpaperflare.com/wallpaper/960/861/113/anime-ai-art-landscape-sky-school-uniform-hd-wallpaper-preview.jpg" alt="Slide 2">
+            </div>
+            <!-- Add more carousel items here -->
+          </div>
+  
+          <!-- Left and right controls -->
+          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
   </div>
   <div class="text-box">
     <div class="notice">Important News</div>
@@ -313,6 +398,8 @@
             <button id="pauseBtn"><img src="https://t4.ftcdn.net/jpg/05/31/63/39/360_F_531633999_OhPqUVRuF6B8KgHYo1BZiTvcL1wFXAHL.jpg" alt="Pause"></button>
         </div>
     </div>
+
+
 </div>
   
   <!-- end header section -->
@@ -724,31 +811,64 @@
         }
 
         /* time*/
-        function updateDateTime() {
-    var currentDate = new Date();
-    var day = currentDate.toLocaleString('default', { weekday: 'short' });
-    var month = currentDate.toLocaleString('default', { month: 'short' });
-    var date = currentDate.getDate();
-    var year = currentDate.getFullYear();
-    var hours = currentDate.getHours();
-    var minutes = currentDate.getMinutes();
-    var seconds = currentDate.getSeconds();
+         // Function to update date and time
+         function updateDateTime() {
+            var now = new Date();
+            var date = now.toDateString();
+            var time = now.toLocaleTimeString();
+            var dateTimeString = ' Date: ' + date + ' | Time: ' + time;
+            document.getElementById('datetime').textContent = dateTimeString;
+        }
 
-    // Format the time to display leading zeros if less than 10
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+        // Call the function initially
+        updateDateTime();
 
-    // Update the date and time in the HTML element
-    document.getElementById('date').innerHTML = day + ' ' + month + ' ' + date + ' ' + year + ' , ' + hours + ':' + minutes + ':' + seconds;
-}
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
 
-// Call the updateDateTime function initially to set the initial date and time
-updateDateTime();
+          // Function to show advertisement modal with dynamic content
+    function showAdvertisementModal(imageUrl, content) {
+        // Set the image source
+        $('#modalImage').attr('src', imageUrl);
+        // Set the content
+        $('#modalContent').html(content);
+        // Show the modal
+        $('#advertisementModal').modal('show');
+    }
 
-// Update the date and time every second (1000 milliseconds)
-setInterval(updateDateTime, 1000);
+    // Call the function with sample image URL and content (replace with actual values)
+    $(document).ready(function() {
+        // Sample image URL and content
+        var imageUrl = 'https://example.com/image.jpg';
+        var content = '<h5>Advertisement Content Goes Here</h5>';
+        // Show the modal with dynamic content
+        showAdvertisementModal(imageUrl, content);
+    });
+
+    $(document).ready(function(){
+    // Activate Carousel
+    $("#myCarousel").carousel({
+      interval: 5000 // 5 seconds interval
+    });
+      
+    // Enable Carousel Indicators
+    $(".item1").click(function(){
+      $("#myCarousel").carousel(0);
+    });
+    $(".item2").click(function(){
+      $("#myCarousel").carousel(1);
+    });
+    
+    // Enable Carousel Controls
+    $(".left").click(function(){
+      $("#myCarousel").carousel("prev");
+    });
+    $(".right").click(function(){
+      $("#myCarousel").carousel("next");
+    });
+  });
   </script>
+
 
  
 </body>
