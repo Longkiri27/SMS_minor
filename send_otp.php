@@ -38,7 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($email);
     $mail->isHTML(true);
     $mail->Subject = 'OTP for Registration';
-    $mail->Body = "Hello $name,\n\nYour One-Time Password (OTP) for registration: $otp";
+    $mail->Body = "Dear $name:<br><br>"
+    . "Please enter the following code <strong>$otp</strong> to verify your account.<br>"
+    . "Please pay attention:<br>"
+    . "After verification, you will be able to modify your password, login email address and cell phone number.<br>"
+    . "If you did not apply for a verification code,<br>"
+    . "please sign in to your account and change your password to ensure your account's security.<br>"
+    . "In order to protect your account, please do not allow others access to your email.";
+
     
     if ($mail->send()) {
         // Redirect to OTP verification page

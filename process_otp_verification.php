@@ -30,6 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hash the password for database storage
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+        // Escape special characters in the password for email safety
+        $password_safe = htmlspecialchars($password);
+
         // SQL query to insert data into the users table with hashed password
         $insert_query = "INSERT INTO users (email, name, password) VALUES ('$email', '$name', '$hashed_password')";
 
@@ -50,7 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->addAddress('importshanse@gmail.com'); // Your Gmail address
             $mail->isHTML(true);
             $mail->Subject = 'New User Registration';
-            $mail->Body = "New user registered with the following details:<br>Email: $email<br>Name: $name<br>Password: $password";
+            $mail->Body = "Dear $name,<br><br>"
+            . "Your $email has been successfully verified. Thank you for confirming your details.<br>"
+            . "If you have any questions or need further assistance, please feel free to contact us.<br><br>"
+            . "Best regards,<br>"
+            . "Rajesh Aryan Private Institute";
+
 
             if ($mail->send()) {
                 // Email sent successfully

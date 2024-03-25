@@ -9,7 +9,7 @@
 
 <h2>Registration Successful</h2>
 <p>Congratulations! Your registration was successful.</p>
-<p>You can now <a href="login_portal.php">login</a> to your account.</p>
+<p>You can now <a href="student_login.html">login</a> to your account.</p>
 
 </body>
 </html>
