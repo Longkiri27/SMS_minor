@@ -30,10 +30,29 @@ if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
     $hashed_password = $row['password'];
 
+    // Debugging: Output stored email, stored hashed password, user-entered email, and user-entered password
+    echo "Stored Email: " . $row['email'] . "<br>";
+    echo "Stored Hashed Password: " . $hashed_password . "<br>";
+    echo "User Entered Email: " . $email . "<br>";
+    echo "User Entered Password: " . $password . "<br>";
+    // Verify the password
+echo "User Entered Password: " . $password . "<br>";
+echo "Hashed Password from Database: " . $hashed_password . "<br>";
+echo "Password Verification Step Reached.<br>";
+
+if (password_verify($password, $hashed_password)) {
+    // Password is correct, login successful
+    $_SESSION['email'] = $row['email'];
+    header("Location: student_dashboard.php"); // Redirect to dashboard or any other page
+    exit();
+} else {
+    echo "Password verification failed.<br>";
+}
+
+
     // Verify the password
     if (password_verify($password, $hashed_password)) {
         // Password is correct, login successful
-        session_start();
         $_SESSION['email'] = $row['email'];
         header("Location: student_dashboard.php"); // Redirect to dashboard or any other page
         exit();
@@ -54,6 +73,4 @@ if (mysqli_num_rows($result) == 1) {
 
 // Close connection
 mysqli_close($conn);
-
-
 ?>

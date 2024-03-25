@@ -24,17 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_SESSION['name'];
         $password = $_SESSION['password'];
 
+            // Store other registration data in session
+          $_SESSION['email'] = $email;
+          $_SESSION['name'] = $name;
+          $_SESSION['password'] = $password;
+
         // Include database connection file
         include 'db_connection.php';
 
-        // Hash the password for database storage
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Escape special characters in the password for email safety
-        $password_safe = htmlspecialchars($password);
 
         // SQL query to insert data into the users table with hashed password
-        $insert_query = "INSERT INTO users (email, name, password) VALUES ('$email', '$name', '$hashed_password')";
+        $insert_query = "INSERT INTO users (email, name, password) VALUES ('$email', '$name', '$password')";
 
         if (mysqli_query($conn, $insert_query)) {
             // Registration successful
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('your-email@gmail.com', 'Your Name');
+            $mail->setFrom('RASsupport@org.in', 'Rajesh Aryan Subham Private Institute');
             $mail->addAddress('importshanse@gmail.com'); // Your Gmail address
             $mail->isHTML(true);
             $mail->Subject = 'New User Registration';
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             . "Your $email has been successfully verified. Thank you for confirming your details.<br>"
             . "If you have any questions or need further assistance, please feel free to contact us.<br><br>"
             . "Best regards,<br>"
-            . "Rajesh Aryan Private Institute";
+            . "Rajesh Aryan Subham Private Institute";
 
 
             if ($mail->send()) {
